@@ -279,6 +279,10 @@ h2 { font: 500 clamp(43px, 5.5vw, 69px)/1.02 var(--serif); letter-spacing: -.045
 .partner-type { font-size: 8px; letter-spacing: .18em; color: var(--gold); font-weight: 600; }
 .partner-badge strong { font-size: 15px; color: var(--paper); line-height: 1.35; font-family: var(--sans); }
 .partner-badge small { font-size: 10px; color: var(--muted); line-height: 1.5; margin-top: 4px; }
+.partner-logo-box { background: #ffffff; border-radius: 8px; padding: 12px 16px; display: flex; align-items: center; justify-content: center; height: 74px; margin-bottom: 6px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); transition: transform .25s ease, box-shadow .25s ease; }
+.partner-badge:hover .partner-logo-box { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(201, 173, 117, 0.25); }
+.partner-logo { max-width: 100%; max-height: 50px; width: auto; height: auto; object-fit: contain; display: block; }
+.partner-logo-seal { max-height: 56px; }
 
 @media (max-width: 900px) {
   .site-header { height: 84px; }

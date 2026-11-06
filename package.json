@@ -1,0 +1,15 @@
+{
+  "name": "trumpy-food-beverages-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "packageManager": "pnpm@10.34.9",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 231 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 231"
+  },
+  "devDependencies": {
+    "vite": "6.4.1"
+  }
+}
