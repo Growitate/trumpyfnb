@@ -73,10 +73,11 @@ h1, h2, h3, p { margin-top: 0; }
 .orbit { border: 1px solid rgba(201,173,117,.17); border-radius: 50%; position: absolute; transform: rotate(-24deg); }
 .orbit-outer { width: 83%; height: 54%; }
 .orbit-inner { width: 61%; height: 89%; transform: rotate(33deg); border-color: rgba(201,173,117,.12); }
-.orbit-core { width: 117px; height: 117px; border: 1px solid rgba(201,173,117,.55); border-radius: 50%; display: flex; flex-direction: column; gap: 8px; align-items: center; justify-content: center; background: rgba(19,19,16,.84); box-shadow: 0 0 50px rgba(201,173,117,.08), inset 0 0 35px rgba(201,173,117,.04); z-index: 2; text-align: center; }
+.orbit-core { width: 126px; height: 126px; border: 1.5px solid rgba(201,173,117,.65); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(19,19,16,.92); box-shadow: 0 0 50px rgba(201,173,117,.12), inset 0 0 35px rgba(201,173,117,.08); z-index: 2; padding: 4px; overflow: hidden; }
 .core-mark { font: 500 30px/1 var(--serif); color: var(--gold-light); }
-.core-logo { width: 50px; height: 50px; border-radius: 50%; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(0,0,0,.6)); margin-bottom: 2px; }
-.core-label { font-size: 7px; line-height: 1.6; letter-spacing: .17em; color: #b6b2a7; }
+.core-logo { width: 100%; height: 100%; border-radius: 50%; object-fit: contain; filter: drop-shadow(0 4px 14px rgba(0,0,0,.7)); display: block; transition: transform .3s ease; }
+.orbit-core:hover .core-logo { transform: scale(1.05); }
+.core-label { display: none; }
 .art-node { width: 116px; position: absolute; display: flex; flex-direction: column; gap: 5px; z-index: 2; padding: 12px 13px; background: rgba(28,28,24,.91); border: 1px solid rgba(201,173,117,.25); box-shadow: 0 14px 35px rgba(0,0,0,.15); }
 .node-formula { top: 23%; left: -1%; }
 .node-brand { top: 21%; right: -1%; }
