@@ -263,14 +263,11 @@ h2 { font: 500 clamp(43px, 5.5vw, 69px)/1.02 var(--serif); letter-spacing: -.045
 }
 
 /* --- TRUMPY F&B UPDATES: BIGGER LOGO & PARTNERS SECTION --- */
-.site-header { height: 110px; }
+.site-header { height: 104px; }
 .wordmark { gap: 16px; align-items: center; }
-.wordmark-logo { width: 62px; height: 62px; border-radius: 50%; object-fit: contain; display: block; filter: drop-shadow(0 3px 10px rgba(0,0,0,.45)); transition: transform .25s ease; flex-shrink: 0; }
+.wordmark-logo { width: 68px; height: 68px; border-radius: 50%; object-fit: contain; display: block; filter: drop-shadow(0 3px 10px rgba(0,0,0,.45)); transition: transform .25s ease; flex-shrink: 0; }
 .wordmark:hover .wordmark-logo { transform: scale(1.06); }
-.wordmark-symbol { width: 48px; height: 48px; font-size: 28px; border-width: 1.5px; }
-.wordmark-copy strong { font-size: 16px; letter-spacing: .24em; }
-.wordmark-copy small { font-size: 9px; letter-spacing: .25em; }
-.footer-wordmark .wordmark-logo { width: 50px; height: 50px; }
+.footer-wordmark .wordmark-logo { width: 56px; height: 56px; }
 
 .contact-subintro { color: var(--gold-light); font-size: 13px; font-weight: 500; margin: 12px 0 28px; }
 
@@ -294,9 +291,7 @@ h2 { font: 500 clamp(43px, 5.5vw, 69px)/1.02 var(--serif); letter-spacing: -.045
 
 @media (max-width: 900px) {
   .site-header { height: 90px; }
-  .wordmark-logo { width: 48px; height: 48px; }
-  .wordmark-symbol { width: 40px; height: 40px; font-size: 24px; }
-  .wordmark-copy strong { font-size: 14px; }
+  .wordmark-logo { width: 52px; height: 52px; }
   .partners-intro { flex-direction: column; align-items: flex-start; gap: 16px; margin: 38px 0 24px; }
   .partners-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .partners-section { padding-top: 78px; padding-bottom: 80px; }
