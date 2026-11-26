@@ -1,0 +1,122 @@
+# ==============================================================================
+# Apache Configuration for TRUMPY FOODS & BEVERAGES
+# ==============================================================================
+
+# 1. Directory Index
+DirectoryIndex index.html
+
+# 2. Prevent Directory Browsing
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+
+# 3. URL Rewriting & SPA / Clean Route Fallback
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve real files and folders directly
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Fall back to index.html for all other routes
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# 4. MIME Types Configuration
+<IfModule mod_mime.c>
+  AddType application/javascript               js mjs
+  AddType text/css                             css
+  AddType image/svg+xml                        svg svgz
+  AddEncoding gzip                             svgz
+  AddType image/webp                           webp
+  AddType image/png                            png
+  AddType image/jpeg                           jpg jpeg
+  AddType image/x-icon                         ico
+  AddType application/json                     json
+  AddType font/woff                            woff
+  AddType font/woff2                           woff2
+  AddType font/ttf                             ttf
+</IfModule>
+
+# 5. Gzip / Deflate Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/woff
+  AddOutputFilterByType DEFLATE font/woff2
+</IfModule>
+
+# 6. Browser Caching Rules (mod_expires & mod_headers)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+
+  # HTML & JSON: Immediate revalidation
+  ExpiresByType text/html                      "access plus 0 seconds"
+  ExpiresByType application/json               "access plus 0 seconds"
+
+  # Assets: Long cache
+  ExpiresByType text/css                       "access plus 1 year"
+  ExpiresByType application/javascript         "access plus 1 year"
+  ExpiresByType text/javascript                "access plus 1 year"
+  ExpiresByType image/jpeg                     "access plus 1 year"
+  ExpiresByType image/png                      "access plus 1 year"
+  ExpiresByType image/webp                     "access plus 1 year"
+  ExpiresByType image/svg+xml                  "access plus 1 year"
+  ExpiresByType image/x-icon                   "access plus 1 year"
+  ExpiresByType font/woff2                     "access plus 1 year"
+  ExpiresByType font/woff                      "access plus 1 year"
+  ExpiresByType font/ttf                       "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Security Headers
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+  # Ensure index.html and JSON are never stale
+  <FilesMatch "\.(html|json)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+
+  # Cache static hashed assets and media
+  <FilesMatch "\.(css|js|woff|woff2|ttf|png|jpe?g|webp|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# 7. Protect Sensitive & Dot Files (except .well-known)
+<IfModule mod_rewrite.c>
+  RewriteCond %{REQUEST_URI} "!(^|/)\.well-known([^/]+)?/" [NC]
+  RewriteRule "(^|/)\." - [F]
+</IfModule>
+
+<FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op]|env|git|md|yml|yaml)|package\.json|package-lock\.json|pnpm-lock\.yaml)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# 8. Custom 404 Fallback
+ErrorDocument 404 /index.html
